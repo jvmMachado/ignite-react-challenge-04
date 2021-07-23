@@ -3,10 +3,18 @@ import { FiCheckSquare } from 'react-icons/fi';
 import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
+import { TFood } from '../../types';
 
-const ModalEditFood = (props) => {
+interface ModalEditFoodProps {
+  isOpen: boolean;
+  editingFood: TFood;
+  setIsOpen: () => void;
+  handleUpdateFood: (data: TFood) => void;
+}
 
-  async function handleSubmit(data) {
+const ModalEditFood = (props: ModalEditFoodProps) => {
+
+  async function handleSubmit(data: TFood) {
     const { setIsOpen, handleUpdateFood } = props;
 
     handleUpdateFood(data);
@@ -20,7 +28,7 @@ const ModalEditFood = (props) => {
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form onSubmit={handleSubmit} initialData={editingFood}>
         <h1>Editar Prato</h1>
-        <Input name="image" placeholder="Cole o link aqui" />
+        <Input name="image" placeholder="Cole o link aqui"  />
 
         <Input name="name" placeholder="Ex: Moda Italiana" />
         <Input name="price" placeholder="Ex: 19.90" />
